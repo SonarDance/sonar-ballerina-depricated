@@ -1,0 +1,11 @@
+{
+  "rules-metadata-path": "./src/main/resources/org/sonar/l10n/ballerina/rules/ballerina",
+  "languages": [
+    "BALLERINA"
+  ],
+  "latest-update": "2023-10-15T18:34:00.183544Z",
+  "options": {
+    "no-language-in-filenames": true,
+    "preserve-filenames": true
+  }
+}
