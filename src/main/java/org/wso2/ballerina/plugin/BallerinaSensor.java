@@ -62,6 +62,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 class BallerinaSensor implements Sensor {
     private static final Logger LOG = Loggers.get(BallerinaSensor.class);
@@ -108,20 +109,21 @@ class BallerinaSensor implements Sensor {
                         fileSystem.predicates().hasType(InputFile.Type.MAIN)
                 );
 
+        // Setting up the files to be analyzed
+        List<InputFile> filesToAnalyze;
+        Iterable<InputFile> mainFiles = fileSystem.inputFiles(mainFilePredicate);
         // Feature to perform analysis only on changed files
-        List<InputFile> filesToAnalyze = (List<InputFile>) fileSystem.inputFiles(mainFilePredicate);
         if (canSkipUnchangedFiles(sensorContext)) {
-            LOG.debug("The Ballerina analyzer is running in a context where it can skip unchanged files.");
-            int totalFiles = 0;
-            for (InputFile mainFile : filesToAnalyze) {
-                totalFiles++;
-                if (mainFile.status() != InputFile.Status.SAME) {
-                    filesToAnalyze.add(mainFile);
-                }
-            }
-            LOG.info("Only analyzing " + filesToAnalyze.size() + " changed Ballerina files out of " + totalFiles + ".");
+            filesToAnalyze = StreamSupport.stream(mainFiles.spliterator(), false)
+                    .filter(inputFile -> inputFile.status() != InputFile.Status.SAME)
+                    .collect(Collectors.toList());
+
+            int totalFiles = (int) StreamSupport.stream(mainFiles.spliterator(), false).count();
+
+            LOG.info("Only analyzing " + filesToAnalyze.size() + " changed Java files out of " + totalFiles + ".");
         } else {
-            LOG.debug("The Ballerina analyzer is running in a context where unchanged files cannot be skipped.");
+            LOG.debug("The Java analyzer is running in a context where unchanged files cannot be skipped.");
+            filesToAnalyze = StreamSupport.stream(mainFiles.spliterator(), false).collect(Collectors.toList());
         }
 
         List<String> filenames = new java.util.ArrayList<>();

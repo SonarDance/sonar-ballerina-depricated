@@ -22,7 +22,6 @@ package org.wso2.ballerina.plugin
 import org.sonar.api.SonarRuntime
 import org.sonar.api.server.rule.RulesDefinition
 import org.sonarsource.analyzer.commons.RuleMetadataLoader
-import org.sonarsource.kotlin.plugin.KotlinProfileDefinition
 import org.wso2.ballerina.plugin.BallerinaCheckList.BALLERINA_CHECKS
 
 class KotlinRulesDefinition(private val runtime: SonarRuntime) : RulesDefinition {

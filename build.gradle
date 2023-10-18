@@ -14,6 +14,9 @@ plugins {
     // Required plugin for checks testing
     id "io.spring.dependency-management" version "1.0.11.RELEASE"
 
+    // Required plugin for performing checks signing
+    // id 'signing'
+
     // Required to work with Ballerina Project APIs
      id 'java'
     // id 'java-library'
@@ -65,16 +68,18 @@ dependencies {
     implementation group:'com.google.code.gson', name:'gson', version:'2.9.0'
 
     // Required dependencies for testing the plugin before building and deploying
-    testImplementation 'org.testng:testng:7.7.0'
-    implementation group:'org.junit.jupiter', name:'junit-jupiter-api', version:'5.8.2'
-    implementation group:'org.junit.jupiter', name:'junit-jupiter-params', version:'5.8.2'
-    implementation group:'org.junit.jupiter', name:'junit-jupiter-engine', version:'5.8.2'
-    implementation group:'org.assertj', name:'assertj-core', version:'3.23.1'
-    implementation group:'org.mockito', name:'mockito-core', version:'4.6.1'
-    implementation group:'io.mockk', name:'mockk', version:'1.12.4'
-    implementation group:'io.github.classgraph', name:'classgraph', version:'4.8.149'
-    implementation group:'org.sonarsource.analyzer-commons', name:'sonar-analyzer-test-commons', version:'2.1.0.1111'
-    implementation group:'org.sonarsource.sonarqube', name:'sonar-plugin-api-impl', version:'9.7.1.62043'
+    testImplementation group:'org.junit.jupiter', name:'junit-jupiter-api', version:'5.8.2'
+    testImplementation group:'org.junit.jupiter', name:'junit-jupiter-params', version:'5.8.2'
+    testImplementation group:'org.junit.jupiter', name:'junit-jupiter-engine', version:'5.8.2'
+    testImplementation group:'org.assertj', name:'assertj-core', version:'3.23.1'
+    testImplementation group:'org.mockito', name:'mockito-core', version:'4.6.1'
+    testImplementation group:'io.mockk', name:'mockk', version:'1.12.4'
+    testImplementation group:'io.github.classgraph', name:'classgraph', version:'4.8.149'
+    testImplementation group:'org.sonarsource.analyzer-commons', name:'sonar-analyzer-test-commons', version:'2.1.0.1111'
+    testImplementation group:'org.sonarsource.orchestrator', name:'sonar-orchestrator', version:'3.40.0.183'
+    testImplementation group:'org.sonarsource.sonarqube', name:'sonar-ws', version:'9.7.1.62043'
+    testImplementation group:'org.sonarsource.sonarlint.core', name:'sonarlint-core', version:'7.0.0.37656'
+    testImplementation group:'org.sonarsource.sonarqube', name:'sonar-plugin-api-impl', version:'9.7.1.62043'
 
     // Required dependencies for accessing the ballerina java project API
     // implementation group:'org.ballerinalang', name:'ballerina-lang', version:'2201.5.2'
@@ -87,6 +92,18 @@ dependencies {
 // Prevent warning: Gradle 5.0 will ignore annotation processors
 tasks.withType(JavaCompile).configureEach {
     options.compilerArgs = options.compilerArgs + "-proc:none"
+}
+
+// Required to run tests relevant to the plugin
+tasks.test {
+    useJUnitPlatform()
+}
+
+// include compileOnly dependencies during test to prevent certificate issues
+configurations {
+    testImplementation {
+        extendsFrom compileOnly
+    }
 }
 
 // Configurations for the output jar file when the gradle build is performed

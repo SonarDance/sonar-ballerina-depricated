@@ -20,6 +20,7 @@
 package org.sonarsource.kotlin.checks
 
 import org.junit.jupiter.api.Test
+import org.wso2.ballerina.checks.CheckTestWithNoSemantics
 import org.wso2.ballerina.checks.UnnecessaryImportsCheck
 import org.wso2.ballerina.verifier.KotlinVerifier
 

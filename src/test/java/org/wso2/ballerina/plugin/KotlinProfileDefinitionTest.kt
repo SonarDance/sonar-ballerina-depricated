@@ -3,7 +3,6 @@ package org.wso2.ballerina.plugin
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 import org.sonar.api.server.profile.BuiltInQualityProfilesDefinition
-import org.sonarsource.kotlin.plugin.KotlinProfileDefinition
 
 internal class KotlinProfileDefinitionTest {
 

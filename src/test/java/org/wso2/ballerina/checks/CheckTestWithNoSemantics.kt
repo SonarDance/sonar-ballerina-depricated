@@ -17,13 +17,14 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package org.sonarsource.kotlin.checks
+package org.wso2.ballerina.checks
 
 import org.junit.jupiter.api.Test
+import org.sonarsource.kotlin.checks.CheckTest
 import org.wso2.ballerina.api.AbstractCheck
 import org.wso2.ballerina.verifier.KotlinVerifier
 
-private const val NO_SEMANTICS_TEST_FILE_POSTFIX = "SampleNoSemantics.kt"
+private const val NO_SEMANTICS_TEST_FILE_POSTFIX = "SampleNoSemantics.bal"
 
 abstract class CheckTestWithNoSemantics(
         check: AbstractCheck,

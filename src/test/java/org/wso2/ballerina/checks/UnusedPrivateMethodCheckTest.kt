@@ -19,6 +19,7 @@
  */
 package org.sonarsource.kotlin.checks
 
+import org.wso2.ballerina.checks.CheckTestWithNoSemantics
 import org.wso2.ballerina.checks.UnusedPrivateMethodCheck
 
 class UnusedPrivateMethodCheckTest : CheckTestWithNoSemantics(UnusedPrivateMethodCheck(), shouldReport = true)

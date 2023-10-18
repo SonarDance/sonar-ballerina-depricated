@@ -4,7 +4,6 @@ import org.jetbrains.kotlin.config.LanguageVersion;
 import org.sonar.api.Plugin;
 import org.sonar.api.config.PropertyDefinition;
 import org.sonar.api.resources.Qualifiers;
-import org.sonarsource.kotlin.plugin.KotlinProfileDefinition;
 
 public class BallerinaPlugin implements Plugin {
     // Required Categories
