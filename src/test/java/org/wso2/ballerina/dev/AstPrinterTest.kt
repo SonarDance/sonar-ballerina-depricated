@@ -17,7 +17,7 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package org.sonarsource.kotlin.dev
+package org.wso2.ballerina.dev
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.util.Files
@@ -25,8 +25,6 @@ import org.jetbrains.kotlin.config.LanguageVersion
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.wso2.ballerina.converter.Environment
-import org.wso2.ballerina.dev.AstPrinter
-import org.wso2.ballerina.dev.DotNode
 import java.nio.file.Path
 import kotlin.io.path.readText
 

@@ -17,7 +17,7 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package org.sonarsource.kotlin.converter
+package org.wso2.ballerina.converter
 
 import org.assertj.core.api.Assertions
 import org.jetbrains.kotlin.config.LanguageVersion
@@ -25,7 +25,6 @@ import org.jetbrains.kotlin.psi.KtFile
 import org.junit.jupiter.api.Test
 import org.wso2.ballerina.dev.AstPrinter
 import org.wso2.ballerina.api.ParseException
-import org.wso2.ballerina.converter.Environment
 import java.nio.charset.StandardCharsets
 import java.nio.file.Files
 import java.nio.file.Path

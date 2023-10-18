@@ -17,7 +17,7 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package org.sonarsource.kotlin.converter
+package org.wso2.ballerina.converter
 
 import io.mockk.every
 import io.mockk.mockkStatic
@@ -31,8 +31,6 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.sonar.api.batch.fs.internal.TestInputFileBuilder
 import org.wso2.ballerina.utils.kotlinTreeOf
-import org.wso2.ballerina.converter.Environment
-import org.wso2.ballerina.converter.KotlinSyntaxStructure
 import java.nio.charset.StandardCharsets
 import java.nio.file.Path
 import kotlin.io.path.readText

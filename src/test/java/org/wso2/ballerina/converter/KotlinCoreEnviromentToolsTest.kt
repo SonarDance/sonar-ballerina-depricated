@@ -17,7 +17,7 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package org.sonarsource.kotlin.converter
+package org.wso2.ballerina.converter
 
 import org.assertj.core.api.Assertions.assertThat
 import org.jetbrains.kotlin.com.intellij.openapi.util.Disposer

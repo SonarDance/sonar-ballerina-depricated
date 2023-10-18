@@ -17,19 +17,20 @@ internal class BallerinaPluginTest {
         val context = PluginContextImpl.Builder().setSonarRuntime(runtime).build()
         val ballerinaPlugin = BallerinaPlugin()
         ballerinaPlugin.define(context)
-        Assertions.assertThat(context.extensions).hasSize(17)
+        Assertions.assertThat(context.extensions).hasSize(5)
     }
 
-    @Test
-    fun test_sonarlint() {
-        val runtime = SonarRuntimeImpl.forSonarLint(Version.create(3, 9))
-        val context = PluginContextImpl.Builder().setSonarRuntime(runtime).build()
-        val ballerinaPlugin = BallerinaPlugin()
-        ballerinaPlugin.define(context)
-        Assertions.assertThat(context.extensions).hasSize(4)
-    }
+// We have removed this functionality therefore commented out from tests (Will be useful if we aree defining plugin classes for sonarlint)
+//    @Test
+//    fun test_sonarlint() {
+//        val runtime = SonarRuntimeImpl.forSonarLint(Version.create(3, 9))
+//        val context = PluginContextImpl.Builder().setSonarRuntime(runtime).build()
+//        val ballerinaPlugin = BallerinaPlugin()
+//        ballerinaPlugin.define(context)
+//        Assertions.assertThat(context.extensions).hasSize(4)
+//    }
 
-    // We have removed this functionality therefore commented out from tests
+// We have removed this functionality therefore commented out from tests
 //    @Test
 //    fun test_android_context() {
 //        val environment = Environment(listOf("../kotlin-checks-test-sources/build/classes/java/main"), LanguageVersion.LATEST_STABLE)
