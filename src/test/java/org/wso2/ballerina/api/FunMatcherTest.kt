@@ -17,7 +17,7 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package org.sonarsource.kotlin.api
+package org.wso2.ballerina.api
 
 import io.mockk.Called
 import io.mockk.spyk
@@ -33,10 +33,6 @@ import org.jetbrains.kotlin.resolve.calls.util.getCall
 import org.jetbrains.kotlin.types.typeUtil.TypeNullability
 import org.junit.jupiter.api.Test
 import org.sonar.api.batch.fs.internal.TestInputFileBuilder
-import org.wso2.ballerina.api.ArgumentMatcher
-import org.wso2.ballerina.api.ConstructorMatcher
-import org.wso2.ballerina.api.FunMatcher
-import org.wso2.ballerina.api.FunMatcherImpl
 import org.wso2.ballerina.converter.Environment
 import org.wso2.ballerina.utils.kotlinTreeOf
 import java.nio.charset.StandardCharsets

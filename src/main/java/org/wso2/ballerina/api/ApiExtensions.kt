@@ -72,7 +72,6 @@ import org.jetbrains.kotlin.resolve.typeBinding.createTypeBindingForReturnType
 import org.jetbrains.kotlin.types.KotlinType
 import org.jetbrains.kotlin.types.checker.TypeCheckingProcedure.findCorrespondingSupertype
 import org.jetbrains.kotlin.types.expressions.OperatorConventions
-import org.wso2.ballerina.checks.EmptyCommentCheck
 
 private val GET_PROP_WITH_DEFAULT_MATCHER = FunMatcher {
     qualifier = "java.util.Properties"

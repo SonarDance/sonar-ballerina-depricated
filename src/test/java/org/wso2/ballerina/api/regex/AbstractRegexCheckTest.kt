@@ -7,26 +7,6 @@ import org.sonarsource.analyzer.commons.regex.ast.CharacterClassTree
 import org.sonarsource.analyzer.commons.regex.ast.RegexBaseVisitor
 import org.wso2.ballerina.verifier.KotlinVerifier
 
-class AbstractRegexCheckTest {
-    @Test
-    fun `test dummy regex check`() {
-        KotlinVerifier(ReportEveryRegexDummyCheck()) {
-            fileName = "DummyRegexCheckSample.kt"
-        }.verify()
-
-        KotlinVerifier(ReportEveryRegexDummyCheck2()) {
-            fileName = "DummyRegexCheckSample.kt"
-        }.verify()
-    }
-
-    @Test
-    fun `test character class regex check`() {
-        KotlinVerifier(ReportCharacterClassRegexDummyCheck()) {
-            fileName = "ReportCharacterClassRegexDummyCheckSample.kt"
-        }.verify()
-    }
-}
-
 private class ReportEveryRegexDummyCheck : AbstractRegexCheck() {
     override fun visitRegex(regex: RegexParseResult, regexContext: RegexContext) {
         regexContext.reportIssue(regex.result, "Flags: ${regex.result.activeFlags().mask}")

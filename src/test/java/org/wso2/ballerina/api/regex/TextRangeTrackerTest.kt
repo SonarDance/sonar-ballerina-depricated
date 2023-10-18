@@ -17,7 +17,7 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package org.sonarsource.kotlin.api.regex
+package org.wso2.ballerina.api.regex
 
 import org.assertj.core.api.Assertions
 import org.assertj.core.api.ObjectAssert
@@ -26,7 +26,6 @@ import org.jetbrains.kotlin.psi.KtStringTemplateExpression
 import org.jetbrains.kotlin.psi.psiUtil.collectDescendantsOfType
 import org.junit.jupiter.api.Test
 import org.wso2.ballerina.DummyInputFile
-import org.wso2.ballerina.api.regex.TextRangeTracker
 import org.wso2.ballerina.converter.Environment
 import org.wso2.ballerina.utils.kotlinTreeOf
 import java.util.TreeMap
