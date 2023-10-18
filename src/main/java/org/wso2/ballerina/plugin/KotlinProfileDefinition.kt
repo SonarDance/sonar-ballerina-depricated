@@ -24,7 +24,7 @@ import org.sonarsource.analyzer.commons.BuiltInQualityProfileJsonLoader
 
 class KotlinProfileDefinition : BuiltInQualityProfilesDefinition {
     companion object {
-        const val PATH_TO_JSON = "org/sonar/l10n/kotlin/rules/kotlin/Sonar_way_profile.json"
+        const val PATH_TO_JSON = "org/sonar/l10n/ballerina/rules/ballerina/Sonar_way_profile.json"
     }
 
     override fun define(context: BuiltInQualityProfilesDefinition.Context) {

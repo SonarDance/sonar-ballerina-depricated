@@ -1,23 +1,4 @@
-/*
- * SonarSource Kotlin
- * Copyright (C) 2018-2023 SonarSource SA
- * mailto:info AT sonarsource DOT com
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 3 of the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public License
- * along with this program; if not, write to the Free Software Foundation,
- * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
- */
-package org.sonarsource.kotlin.api
+package org.wso2.ballerina.api
 
 import org.assertj.core.api.Assertions.assertThat
 import org.jetbrains.kotlin.com.intellij.psi.PsiElement
@@ -32,8 +13,6 @@ import org.sonar.api.rule.RuleKey
 import org.wso2.ballerina.converter.KotlinTextRanges.textRange
 import org.wso2.ballerina.plugin.KotlinFileContext
 import org.wso2.ballerina.verifier.KotlinVerifier
-import org.wso2.ballerina.api.AbstractCheck
-import org.wso2.ballerina.api.SecondaryLocation
 import java.util.stream.Stream
 
 class AbstractCheckTest {
@@ -72,7 +51,7 @@ class AbstractCheckTest {
     @Test
     fun `initialization test`() {
         val dummyCheck = DummyCheck { _, _, _ -> }
-        val ruleKey = RuleKey.of("kotlinTest", "X99999")
+        val ruleKey = RuleKey.of("BallerinaTest", "X99999")
         dummyCheck.initialize(ruleKey)
         assertThat(dummyCheck.ruleKey).isSameAs(ruleKey)
     }
@@ -81,9 +60,9 @@ class AbstractCheckTest {
     @ArgumentsSource(IssueReportingFunProvider::class)
     fun `report issues in various ways`(reportingFunction: (DummyCheck, KotlinFileContext, PsiElement) -> Unit) {
         KotlinVerifier(
-            DummyCheck(reportingFunction).apply { initialize(RuleKey.of("kotlinTest", "X99999")) }
+            DummyCheck(reportingFunction).apply { initialize(RuleKey.of("BallerinaTest", "X99999")) }
         ) {
-            fileName = "Dummy.kt"
+            fileName = "Dummy.bal"
             classpath = emptyList()
         }.verify()
     }

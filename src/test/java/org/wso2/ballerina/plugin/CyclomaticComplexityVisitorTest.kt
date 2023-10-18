@@ -9,7 +9,6 @@ import org.jetbrains.kotlin.psi.KtLoopExpression
 import org.jetbrains.kotlin.psi.KtNamedFunction
 import org.jetbrains.kotlin.psi.KtWhenEntry
 import org.junit.jupiter.api.Test
-import org.sonarsource.kotlin.plugin.CyclomaticComplexityVisitor
 import org.wso2.ballerina.converter.Environment
 
 internal class CyclomaticComplexityVisitorTest {

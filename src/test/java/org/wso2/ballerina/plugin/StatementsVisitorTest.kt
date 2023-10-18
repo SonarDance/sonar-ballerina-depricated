@@ -3,7 +3,6 @@ package org.wso2.ballerina.plugin
 import org.assertj.core.api.Assertions
 import org.jetbrains.kotlin.config.LanguageVersion
 import org.junit.jupiter.api.Test
-import org.sonarsource.kotlin.plugin.StatementsVisitor
 import org.wso2.ballerina.converter.Environment
 
 internal class StatementsVisitorTest {

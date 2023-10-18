@@ -17,7 +17,7 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package org.sonarsource.kotlin.plugin
+package org.wso2.ballerina.plugin
 
 import org.jetbrains.kotlin.com.intellij.openapi.editor.Document
 import org.jetbrains.kotlin.com.intellij.openapi.util.TextRange
@@ -40,7 +40,6 @@ import org.wso2.ballerina.api.InputFileContext
 import org.wso2.ballerina.api.getContent
 import org.wso2.ballerina.api.linesOfCode
 import org.wso2.ballerina.checks.CognitiveComplexity
-import org.wso2.ballerina.plugin.KotlinFileContext
 import org.wso2.ballerina.visiting.KotlinFileVisitor
 
 const val NOSONAR_PREFIX = "NOSONAR"

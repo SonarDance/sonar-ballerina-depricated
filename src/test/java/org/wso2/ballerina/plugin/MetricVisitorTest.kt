@@ -14,7 +14,6 @@ import org.sonar.api.batch.sensor.internal.SensorContextTester
 import org.sonar.api.issue.NoSonarFilter
 import org.sonar.api.measures.FileLinesContext
 import org.sonar.api.measures.FileLinesContextFactory
-import org.sonarsource.kotlin.plugin.MetricVisitor
 import org.wso2.ballerina.converter.Environment
 import org.wso2.ballerina.utils.kotlinTreeOf
 import java.nio.charset.StandardCharsets

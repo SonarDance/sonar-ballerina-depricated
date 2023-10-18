@@ -27,7 +27,7 @@ import org.wso2.ballerina.plugin.BallerinaCheckList.BALLERINA_CHECKS
 class KotlinRulesDefinition(private val runtime: SonarRuntime) : RulesDefinition {
 
     companion object {
-        private const val RESOURCE_FOLDER = "org/sonar/l10n/kotlin/rules/kotlin"
+        private const val RESOURCE_FOLDER = "org/sonar/l10n/ballerina/rules/ballerina"
     }
 
     override fun define(context: RulesDefinition.Context) {

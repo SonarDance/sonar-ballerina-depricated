@@ -17,7 +17,7 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package org.sonarsource.kotlin.plugin
+package org.wso2.ballerina.plugin
 
 import org.jetbrains.kotlin.psi.KtAnnotated
 import org.jetbrains.kotlin.psi.KtAnnotationEntry
@@ -30,7 +30,6 @@ import org.wso2.ballerina.api.asString
 import org.wso2.ballerina.converter.KotlinTextRanges.textRange
 import org.wso2.ballerina.visiting.KotlinFileVisitor
 import org.wso2.ballerina.visiting.KtTreeVisitor
-import org.wso2.ballerina.plugin.KotlinFileContext
 
 private val SUPPRESSION_ANNOTATION_NAMES = listOf("Suppress", "SuppressWarnings")
 

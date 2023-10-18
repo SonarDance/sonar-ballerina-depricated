@@ -12,7 +12,6 @@ import org.wso2.ballerina.checks.UnusedLocalVariableCheck
 import org.wso2.ballerina.checks.VariableAndParameterNameCheck
 import org.wso2.ballerina.converter.Comment
 import org.wso2.ballerina.converter.CommentAnnotationsAndTokenVisitor
-import org.sonarsource.kotlin.plugin.IssueSuppressionVisitor
 import org.wso2.ballerina.converter.Environment
 import org.wso2.ballerina.utils.kotlinTreeOf
 import org.wso2.ballerina.verifier.TestContext

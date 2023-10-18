@@ -37,6 +37,7 @@ import org.wso2.ballerina.converter.KotlinSyntaxStructure;
 import org.wso2.ballerina.converter.KotlinTree;
 import org.wso2.ballerina.visiting.KotlinFileVisitor;
 import org.wso2.ballerina.visiting.KtChecksVisitor;
+
 import static org.wso2.ballerina.plugin.BallerinaPlugin.BALLERINA_LANGUAGE_VERSION;
 import static org.wso2.ballerina.plugin.BallerinaPlugin.COMPILER_THREAD_COUNT_PROPERTY;
 import static org.wso2.ballerina.plugin.BallerinaPlugin.DEFAULT_BALLERINA_LANGUAGE_VERSION;
@@ -56,13 +57,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
+import static java.util.Collections.emptyList;
 
 class BallerinaSensor implements Sensor {
     private static final Logger LOG = Loggers.get(BallerinaSensor.class);
@@ -90,6 +92,7 @@ class BallerinaSensor implements Sensor {
         this.language = language;
     }
 
+    // Method which defines which language files the plugin should work with
     @Override
     public void describe(SensorDescriptor descriptor) {
         descriptor
@@ -180,13 +183,17 @@ class BallerinaSensor implements Sensor {
                 LOG.error("Could not generate binding context. Proceeding without semantics.", e);
             }
 
-            // Check if the binding context is null, and if it's not the case only continue
-            assert bindingContext != null;
-            Map<PsiFile, List<Diagnostic>> diagnostics = new HashMap<>(bindingContext.getDiagnostics()
-                    .noSuppression()
-                    .all()
-                    .stream()
-                    .collect(Collectors.groupingBy(Diagnostic::getPsiFile)));
+            // Setting up a variable to hold the final outcome of the binding context operation to be used with
+            // lambda expressions
+            BindingContext finalBindingContext = bindingContext;
+
+            Map<PsiFile, List<Diagnostic>> diagnostics = measureDuration("Diagnostics", () -> {
+                assert finalBindingContext != null;
+                return Optional.of(finalBindingContext.getDiagnostics().noSuppression().all())
+                        .orElse(emptyList())
+                        .stream()
+                        .collect(Collectors.groupingBy(diagnostic -> diagnostic.getPsiFile(), Collectors.toList()));
+            });
 
             RegexCache regexCache = new RegexCache();
 
@@ -207,17 +214,20 @@ class BallerinaSensor implements Sensor {
                         , inputFilesIsInAndroidContext);
 
                 // Place where analysis per each source file begins
-                BindingContext finalBindingContext = bindingContext;
                 measureDuration(kotlinFile.getInputFile()
                         .filename()
-                        , () -> analyseFile(sensorContext
-                                , inputFileContext
-                                , visitors
-                                , new KotlinTree(kotlinFile.getKtFile()
-                                        , kotlinFile.getDocument()
-                                        , finalBindingContext
-                                        , diagnostics.get(kotlinFile.getKtFile()), regexCache)
-                                )
+                        , () -> {
+                            assert finalBindingContext != null;
+                            return analyseFile(sensorContext
+                                    , inputFileContext
+                                    , visitors
+                                    , new KotlinTree(kotlinFile.getKtFile()
+                                            , kotlinFile.getDocument()
+                                            , finalBindingContext
+                                            , diagnostics.isEmpty() ? emptyList() : diagnostics.get(kotlinFile.getKtFile())
+                                            , regexCache)
+                                    );
+                        }
                 );
 
                 progressReport.nextFile();
@@ -305,7 +315,7 @@ class BallerinaSensor implements Sensor {
                 .get(BALLERINA_LANGUAGE_VERSION).map(versionString -> {
                     LanguageVersion langVersion = LanguageVersion.fromVersionString(versionString);
                     if (langVersion == null && !versionString.isBlank()) {
-                        LOG.warn("Failed to find Kotlin version '" + versionString + "'. Defaulting to " + DEFAULT_BALLERINA_LANGUAGE_VERSION.getVersionString());
+                        LOG.warn("Failed to find Ballerina version '" + versionString + "'. Defaulting to " + DEFAULT_BALLERINA_LANGUAGE_VERSION.getVersionString());
                     }
                 return langVersion;
                 })

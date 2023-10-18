@@ -87,50 +87,52 @@ internal class BallerinaSensorTest : AbstractSensorTest() {
         Assertions.assertThat(location.message()).isEqualTo("Remove this commented out code.")
     }
 
-    @Test
-    fun simple_file() {
-        val inputFile = createInputFile(
-            "file1.bal", """
-     fun main(args: Array<String>) {
-     print (1 == 1); print("abc"); }
-     data class A(val a: Int)
-     """.trimIndent()
-        )
-        context.fileSystem().add(inputFile)
-        sensor(checkFactory()).execute(context)
-        Assertions.assertThat(context.highlightingTypeAt(inputFile.key(), 1, 0)).containsExactly(TypeOfText.KEYWORD)
-        Assertions.assertThat(context.highlightingTypeAt(inputFile.key(), 1, 3)).isEmpty()
-        Assertions.assertThat(context.measure(inputFile.key(), CoreMetrics.NCLOC).value()).isEqualTo(3)
-        Assertions.assertThat(context.measure(inputFile.key(), CoreMetrics.COMMENT_LINES).value()).isZero
-        Assertions.assertThat(context.measure(inputFile.key(), CoreMetrics.FUNCTIONS).value()).isEqualTo(1)
-        Assertions.assertThat(context.measure(inputFile.key(), CoreMetrics.CLASSES).value()).isEqualTo(1)
-        Assertions.assertThat(context.cpdTokens(inputFile.key())!![1].value)
-            .isEqualTo("print(1==1);print(\"LITERAL\");}")
-        Assertions.assertThat(context.measure(inputFile.key(), CoreMetrics.COMPLEXITY).value()).isEqualTo(1)
-        Assertions.assertThat(context.measure(inputFile.key(), CoreMetrics.STATEMENTS).value()).isEqualTo(2)
+// The following code has been commented out as it works only if all other removed sensors exist
+//    @Test
+//    fun simple_file() {
+//        val inputFile = createInputFile(
+//            "file1.bal", """
+//     fun main(args: Array<String>) {
+//     print (1 == 1); print("abc"); }
+//     data class A(val a: Int)
+//     """.trimIndent()
+//        )
+//        context.fileSystem().add(inputFile)
+//        sensor(checkFactory()).execute(context)
+//        Assertions.assertThat(context.highlightingTypeAt(inputFile.key(), 1, 0)).containsExactly(TypeOfText.KEYWORD)
+//        Assertions.assertThat(context.highlightingTypeAt(inputFile.key(), 1, 3)).isEmpty()
+//        Assertions.assertThat(context.measure(inputFile.key(), CoreMetrics.NCLOC).value()).isEqualTo(3)
+//        Assertions.assertThat(context.measure(inputFile.key(), CoreMetrics.COMMENT_LINES).value()).isZero
+//        Assertions.assertThat(context.measure(inputFile.key(), CoreMetrics.FUNCTIONS).value()).isEqualTo(1)
+//        Assertions.assertThat(context.measure(inputFile.key(), CoreMetrics.CLASSES).value()).isEqualTo(1)
+//        Assertions.assertThat(context.cpdTokens(inputFile.key())!![1].value)
+//            .isEqualTo("print(1==1);print(\"LITERAL\");}")
+//        Assertions.assertThat(context.measure(inputFile.key(), CoreMetrics.COMPLEXITY).value()).isEqualTo(1)
+//        Assertions.assertThat(context.measure(inputFile.key(), CoreMetrics.STATEMENTS).value()).isEqualTo(2)
+//
+//        // FIXME
+//        //assertThat(logTester.logs()).contains("1 source files to be analyzed");
+//    }
 
-        // FIXME
-        //assertThat(logTester.logs()).contains("1 source files to be analyzed");
-    }
-
-    @Test
-    fun test_issue_suppression() {
-        val inputFile = createInputFile(
-            "file1.bal", """
-     @SuppressWarnings("kotlin:S1764")
-     fun main() {
-     print (1 == 1);}
-     @SuppressWarnings(value=["kotlin:S1764"])
-     fun main2() {
-     print (1 == 1);}
-     """.trimIndent()
-        )
-        context.fileSystem().add(inputFile)
-        val checkFactory = checkFactory("S1764")
-        sensor(checkFactory).execute(context)
-        val issues = context.allIssues()
-        Assertions.assertThat(issues).isEmpty()
-    }
+// The following code has been commented out as it works only if all other removed sensors exist
+//    @Test
+//    fun test_issue_suppression() {
+//        val inputFile = createInputFile(
+//            "file1.bal", """
+//     @SuppressWarnings("kotlin:S1764")
+//     fun main() {
+//     print (1 == 1);}
+//     @SuppressWarnings(value=["kotlin:S1764"])
+//     fun main2() {
+//     print (1 == 1);}
+//     """.trimIndent()
+//        )
+//        context.fileSystem().add(inputFile)
+//        val checkFactory = checkFactory("S1764")
+//        sensor(checkFactory).execute(context)
+//        val issues = context.allIssues()
+//        Assertions.assertThat(issues).isEmpty()
+//    }
 
     @Test
     fun test_issue_not_suppressed() {
