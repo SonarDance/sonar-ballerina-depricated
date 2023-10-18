@@ -20,7 +20,6 @@
 package org.wso2.ballerina.checks
 
 import org.junit.jupiter.api.Test
-import org.sonarsource.kotlin.checks.CheckTest
 import org.wso2.ballerina.api.AbstractCheck
 import org.wso2.ballerina.verifier.KotlinVerifier
 

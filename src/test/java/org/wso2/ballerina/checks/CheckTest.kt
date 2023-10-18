@@ -17,13 +17,13 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package org.sonarsource.kotlin.checks
+package org.wso2.ballerina.checks
 
 import org.junit.jupiter.api.Test
 import org.wso2.ballerina.api.AbstractCheck
 import org.wso2.ballerina.verifier.KotlinVerifier
 
-private const val TEST_FILE_POSTFIX = "Sample.kt"
+private const val TEST_FILE_POSTFIX = "Sample.bal"
 
 abstract class CheckTest(
         val check: AbstractCheck,

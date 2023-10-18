@@ -71,6 +71,7 @@ class BallerinaSensor implements Sensor {
     private static final Pattern EMPTY_FILE_CONTENT_PATTERN = Pattern.compile("\\s*+");
     private final CheckFactory checkFactory;
 
+    // TODO: Need to be implemented using Ballerina modules
     public final Checks<AbstractCheck> checks;
 
     private final FileLinesContextFactory fileLinesContextFactory;
@@ -100,11 +101,13 @@ class BallerinaSensor implements Sensor {
                 .name(language.getName() + " Sensor");
     }
 
+    // The place which the entire scan logic should be defined, this is the starting point of the scanner
     @Override
     public void execute(SensorContext sensorContext) {
         PerformanceMeasure.Duration sensorDuration = createPerformanceMeasureReport(sensorContext);
 
-        // Feature to extract out only .bal file from a project for analysis
+        // Feature to extract out only .bal file from a project for analysis (This part needs to be changed to suite
+        // Package wise creation)
         FileSystem fileSystem = sensorContext.fileSystem();
         FilePredicate mainFilePredicate = fileSystem.predicates()
                 .and(
@@ -154,8 +157,9 @@ class BallerinaSensor implements Sensor {
         sensorDuration.stop();
     }
 
-    // Ballerina specific implementations should start from this point onwards
+    // TODO: Ballerina specific implementations should start from this point onwards
     private Boolean analyzeFiles(SensorContext sensorContext, Iterable<InputFile> inputFiles, ProgressReport progressReport, List<KotlinFileVisitor> visitors, List<String> filenames){
+        // This is specific to Kotlin to determine weather it's running on an Android context or not
         Environment environment = environment(sensorContext);
 
         try{

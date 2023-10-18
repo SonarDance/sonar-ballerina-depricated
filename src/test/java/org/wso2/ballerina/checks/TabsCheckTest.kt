@@ -20,6 +20,7 @@
 package org.sonarsource.kotlin.checks
 
 import org.junit.jupiter.api.Test
+import org.wso2.ballerina.checks.CheckTest
 import org.wso2.ballerina.checks.TabsCheck
 import org.wso2.ballerina.verifier.KotlinVerifier
 

@@ -20,5 +20,6 @@
 package org.sonarsource.kotlin.checks
 
 import org.wso2.ballerina.checks.AndroidBroadcastingCheck
+import org.wso2.ballerina.checks.CheckTest
 
 class AndroidBroadcastingCheckTest : CheckTest(AndroidBroadcastingCheck())

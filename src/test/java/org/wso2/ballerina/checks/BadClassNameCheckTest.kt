@@ -20,5 +20,6 @@
 package org.sonarsource.kotlin.checks
 
 import org.wso2.ballerina.checks.BadClassNameCheck
+import org.wso2.ballerina.checks.CheckTest
 
 class BadClassNameCheckTest : CheckTest(BadClassNameCheck())

@@ -20,5 +20,6 @@
 package org.sonarsource.kotlin.checks
 
 import org.wso2.ballerina.checks.AnchorPrecedenceCheck
+import org.wso2.ballerina.checks.CheckTest
 
 class AnchorPrecedenceCheckTest : CheckTest(AnchorPrecedenceCheck())

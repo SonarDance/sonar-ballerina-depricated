@@ -20,5 +20,6 @@
 package org.sonarsource.kotlin.checks
 
 import org.wso2.ballerina.checks.BooleanInversionCheck
+import org.wso2.ballerina.checks.CheckTest
 
 class BooleanInversionCheckTest : CheckTest(BooleanInversionCheck())

@@ -19,6 +19,7 @@
  */
 package org.sonarsource.kotlin.checks
 
+import org.wso2.ballerina.checks.CheckTest
 import org.wso2.ballerina.checks.DuplicatesInCharacterClassCheck
 
 class DuplicatesInCharacterClassCheckTest : CheckTest(DuplicatesInCharacterClassCheck())

@@ -21,6 +21,7 @@ package org.sonarsource.kotlin.checks
 
 import org.junit.jupiter.api.Test
 import org.wso2.ballerina.api.AbstractCheck
+import org.wso2.ballerina.checks.CheckTest
 import org.wso2.ballerina.verifier.KotlinVerifier
 
 private const val NON_ANDROID_TEST_FILE_POSTFIX = "SampleNonAndroid.kt"

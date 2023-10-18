@@ -19,6 +19,7 @@
  */
 package org.sonarsource.kotlin.checks
 
+import org.wso2.ballerina.checks.CheckTest
 import org.wso2.ballerina.checks.VariableAndParameterNameCheck
 
 class VariableAndParameterNameCheckTest : CheckTest(VariableAndParameterNameCheck().apply { format = "^[_a-z][a-zA-Z0-9]*$" })
