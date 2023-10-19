@@ -459,7 +459,7 @@ internal class BallerinaSensorTest : AbstractSensorTest() {
         context.setCanSkipUnchangedFiles(false)
 
         // Enable analysis property to override skipUnchanged setting
-        context.settings().setProperty("sonar.kotlin.skipUnchanged", "true")
+        context.settings().setProperty("sonar.ballerina.skipUnchanged", "true")
 
         assertAnalysisIsIncremental()
     }
@@ -469,7 +469,7 @@ internal class BallerinaSensorTest : AbstractSensorTest() {
         context.setCanSkipUnchangedFiles(true)
 
         // Explicitly prevent the skipping of unchanged files
-        context.settings().setProperty("sonar.kotlin.skipUnchanged", "false")
+        context.settings().setProperty("sonar.ballerina.skipUnchanged", "false")
 
         assertAnalysisIsNotIncremental()
     }

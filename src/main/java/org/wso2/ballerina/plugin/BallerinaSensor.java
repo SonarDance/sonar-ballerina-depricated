@@ -191,6 +191,7 @@ class BallerinaSensor implements Sensor {
             // lambda expressions
             BindingContext finalBindingContext = bindingContext;
 
+            // THERE IS AN ISSUE IN THIS PART WHEN A FILE SCAN IS PERFORMED, CHECK ON IT!!!
             Map<PsiFile, List<Diagnostic>> diagnostics = measureDuration("Diagnostics", () -> {
                 assert finalBindingContext != null;
                 return Optional.of(finalBindingContext.getDiagnostics().noSuppression().all())
